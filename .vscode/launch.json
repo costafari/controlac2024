@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-Controlac2024App<controlac-2024>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "sv.com.lc.controlac.Controlac2024App",
+      "projectName": "controlac-2024",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

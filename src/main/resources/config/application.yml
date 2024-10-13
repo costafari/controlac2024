@@ -95,7 +95,7 @@ spring:
     name: controlac2024
   docker:
     compose:
-      enabled: true
+      enabled: false
       lifecycle-management: start-only
       file: src/main/docker/services.yml
   profiles:
@@ -189,7 +189,7 @@ info:
 
 jhipster:
   clientApp:
-    name: 'controlac2024App'
+    name: 'Controlac2024'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #   allowed-origins: "http://localhost:8100,http://localhost:9000"
