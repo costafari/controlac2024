@@ -1,0 +1,82 @@
+entity Clientes {
+	id Long 
+    activo Boolean
+    apellidos String
+    direcion String
+    email String
+    nombreContacto String
+    nombreEmpresa String
+    nombres String
+    notas String
+    sitioWeb String
+    telefonoFijo Integer
+    telefonoFijo2 Integer
+    telefonoMovil Integer
+    telefonoMovil2 Integer
+}
+
+entity Lotes {
+	id Long 
+    cantidad Integer
+    fechaEntrada LocalDate
+    lote String
+}
+
+entity Productos {
+	id Long 
+    descipcion String
+    nombre String
+    notas String 
+}
+
+entity Proveedores {
+	id Long 
+    direccion String
+    nombreContacto String
+    nombreEmpresa String
+    notas String
+    sitioWeb String
+    telefonoFijo Integer
+    telefonoFijo2 Integer
+    telefonoMovil Integer
+    telefonoMovil2 Integer 
+}
+
+entity Facturas {
+	id Long 
+    numeroFactura Long required
+    fechaFactura Instant
+    condicionPago Boolean
+}
+
+entity Detalles {
+	id Long 
+    cantidad Long required
+    total Long
+}
+
+entity Abonos {
+	id Long 
+    saldoAnterior Long required
+    abono Long required
+    nuevoSaldo Long
+}
+
+relationship OneToMany {
+	Lotes to Productos  
+    Detalles to Facturas
+}
+
+relationship ManyToOne {
+    Facturas to Lotes
+    Abonos to Facturas
+}
+
+relationship OneToOne {
+	Lotes to Proveedores
+    Facturas to Clientes
+}
+
+//filter Facturas
+//filter Detalles
+
