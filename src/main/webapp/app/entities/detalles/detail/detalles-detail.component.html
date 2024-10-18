@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (detalles(); as detallesRef) {
+      <div>
+        <h2 data-cy="detallesDetailsHeading"><span>Detalles</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>Id</span></dt>
+          <dd>
+            <span>{{ detallesRef.id }}</span>
+          </dd>
+          <dt><span>Cantidad</span></dt>
+          <dd>
+            <span>{{ detallesRef.cantidad }}</span>
+          </dd>
+          <dt><span>Total</span></dt>
+          <dd>
+            <span>{{ detallesRef.total }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/detalles', detallesRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

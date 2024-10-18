@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (proveedores(); as proveedoresRef) {
+      <div>
+        <h2 data-cy="proveedoresDetailsHeading"><span>Proveedores</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>Id</span></dt>
+          <dd>
+            <span>{{ proveedoresRef.id }}</span>
+          </dd>
+          <dt><span>Direccion</span></dt>
+          <dd>
+            <span>{{ proveedoresRef.direccion }}</span>
+          </dd>
+          <dt><span>Nombre Contacto</span></dt>
+          <dd>
+            <span>{{ proveedoresRef.nombreContacto }}</span>
+          </dd>
+          <dt><span>Nombre Empresa</span></dt>
+          <dd>
+            <span>{{ proveedoresRef.nombreEmpresa }}</span>
+          </dd>
+          <dt><span>Notas</span></dt>
+          <dd>
+            <span>{{ proveedoresRef.notas }}</span>
+          </dd>
+          <dt><span>Sitio Web</span></dt>
+          <dd>
+            <span>{{ proveedoresRef.sitioWeb }}</span>
+          </dd>
+          <dt><span>Telefono Fijo</span></dt>
+          <dd>
+            <span>{{ proveedoresRef.telefonoFijo }}</span>
+          </dd>
+          <dt><span>Telefono Fijo 2</span></dt>
+          <dd>
+            <span>{{ proveedoresRef.telefonoFijo2 }}</span>
+          </dd>
+          <dt><span>Telefono Movil</span></dt>
+          <dd>
+            <span>{{ proveedoresRef.telefonoMovil }}</span>
+          </dd>
+          <dt><span>Telefono Movil 2</span></dt>
+          <dd>
+            <span>{{ proveedoresRef.telefonoMovil2 }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/proveedores', proveedoresRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

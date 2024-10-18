@@ -83,6 +83,17 @@ public class CacheConfiguration {
             createCache(cm, sv.com.lc.controlac.domain.User.class.getName(), jcacheConfiguration);
             createCache(cm, sv.com.lc.controlac.domain.Authority.class.getName(), jcacheConfiguration);
             createCache(cm, sv.com.lc.controlac.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            createCache(cm, sv.com.lc.controlac.domain.Clientes.class.getName(), jcacheConfiguration);
+            createCache(cm, sv.com.lc.controlac.domain.Lotes.class.getName(), jcacheConfiguration);
+            createCache(cm, sv.com.lc.controlac.domain.Lotes.class.getName() + ".productos", jcacheConfiguration);
+            createCache(cm, sv.com.lc.controlac.domain.Lotes.class.getName() + ".facturas", jcacheConfiguration);
+            createCache(cm, sv.com.lc.controlac.domain.Productos.class.getName(), jcacheConfiguration);
+            createCache(cm, sv.com.lc.controlac.domain.Proveedores.class.getName(), jcacheConfiguration);
+            createCache(cm, sv.com.lc.controlac.domain.Facturas.class.getName(), jcacheConfiguration);
+            createCache(cm, sv.com.lc.controlac.domain.Facturas.class.getName() + ".abonos", jcacheConfiguration);
+            createCache(cm, sv.com.lc.controlac.domain.Detalles.class.getName(), jcacheConfiguration);
+            createCache(cm, sv.com.lc.controlac.domain.Detalles.class.getName() + ".facturas", jcacheConfiguration);
+            createCache(cm, sv.com.lc.controlac.domain.Abonos.class.getName(), jcacheConfiguration);
             // jhipster-needle-redis-add-entry
         };
     }

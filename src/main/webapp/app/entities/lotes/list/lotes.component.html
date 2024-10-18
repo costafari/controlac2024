@@ -1,0 +1,115 @@
+<div>
+  <h2 id="page-heading" data-cy="LotesHeading">
+    <span>Lotes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-lotes"
+        [routerLink]="['/lotes/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Crear nuevo Lotes</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (lotes?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Ningún Lotes encontrado</span>
+    </div>
+  }
+
+  @if (lotes && lotes.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cantidad">
+              <div class="d-flex">
+                <span>Cantidad</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaEntrada">
+              <div class="d-flex">
+                <span>Fecha Entrada</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lote">
+              <div class="d-flex">
+                <span>Lote</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="proveedores.id">
+              <div class="d-flex">
+                <span>Proveedores</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (lotes of lotes; track trackId(lotes)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/lotes', lotes.id, 'view']">{{ lotes.id }}</a>
+              </td>
+              <td>{{ lotes.cantidad }}</td>
+              <td>{{ lotes.fechaEntrada | formatMediumDate }}</td>
+              <td>{{ lotes.lote }}</td>
+              <td>
+                @if (lotes.proveedores) {
+                  <div>
+                    <a [routerLink]="['/proveedores', lotes.proveedores.id, 'view']">{{ lotes.proveedores.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/lotes', lotes.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/lotes', lotes.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(lotes)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

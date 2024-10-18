@@ -1,0 +1,59 @@
+{
+  "annotations": {
+    "changelogDate": "20241018034537"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nombreContacto",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nombreEmpresa",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notas",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sitioWeb",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefonoFijo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "telefonoFijo2",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "telefonoMovil",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "telefonoMovil2",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Proveedores",
+  "relationships": [
+    {
+      "otherEntityName": "lotes",
+      "otherEntityRelationshipName": "proveedores",
+      "relationshipName": "lotes",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}
