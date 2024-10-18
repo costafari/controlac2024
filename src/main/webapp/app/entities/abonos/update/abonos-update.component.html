@@ -1,0 +1,100 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-abonos-heading" data-cy="AbonosCreateUpdateHeading">Crear o editar Abonos</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">Id</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let saldoAnteriorRef = editForm.get('saldoAnterior')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_saldoAnterior">Saldo Anterior</label>
+          <input
+            type="number"
+            class="form-control"
+            name="saldoAnterior"
+            id="field_saldoAnterior"
+            data-cy="saldoAnterior"
+            formControlName="saldoAnterior"
+          />
+          @if (saldoAnteriorRef.invalid && (saldoAnteriorRef.dirty || saldoAnteriorRef.touched)) {
+            <div>
+              @if (editForm.get('saldoAnterior')?.errors?.required) {
+                <small class="form-text text-danger">Este campo es obligatorio.</small>
+              }
+              <small class="form-text text-danger" [hidden]="!editForm.get('saldoAnterior')?.errors?.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let abonoRef = editForm.get('abono')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_abono">Abono</label>
+          <input type="number" class="form-control" name="abono" id="field_abono" data-cy="abono" formControlName="abono" />
+          @if (abonoRef.invalid && (abonoRef.dirty || abonoRef.touched)) {
+            <div>
+              @if (editForm.get('abono')?.errors?.required) {
+                <small class="form-text text-danger">Este campo es obligatorio.</small>
+              }
+              <small class="form-text text-danger" [hidden]="!editForm.get('abono')?.errors?.number">Este campo debe ser un número.</small>
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nuevoSaldo">Nuevo Saldo</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nuevoSaldo"
+            id="field_nuevoSaldo"
+            data-cy="nuevoSaldo"
+            formControlName="nuevoSaldo"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_facturas">Facturas</label>
+          <select
+            class="form-control"
+            id="field_facturas"
+            data-cy="facturas"
+            name="facturas"
+            formControlName="facturas"
+            [compareWith]="compareFacturas"
+          >
+            <option [ngValue]="null"></option>
+            @for (facturasOption of facturasSharedCollection; track $index) {
+              <option [ngValue]="facturasOption">{{ facturasOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

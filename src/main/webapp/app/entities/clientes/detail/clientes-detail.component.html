@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (clientes(); as clientesRef) {
+      <div>
+        <h2 data-cy="clientesDetailsHeading"><span>Clientes</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>Id</span></dt>
+          <dd>
+            <span>{{ clientesRef.id }}</span>
+          </dd>
+          <dt><span>Activo</span></dt>
+          <dd>
+            <span>{{ clientesRef.activo }}</span>
+          </dd>
+          <dt><span>Apellidos</span></dt>
+          <dd>
+            <span>{{ clientesRef.apellidos }}</span>
+          </dd>
+          <dt><span>Direcion</span></dt>
+          <dd>
+            <span>{{ clientesRef.direcion }}</span>
+          </dd>
+          <dt><span>Email</span></dt>
+          <dd>
+            <span>{{ clientesRef.email }}</span>
+          </dd>
+          <dt><span>Nombre Contacto</span></dt>
+          <dd>
+            <span>{{ clientesRef.nombreContacto }}</span>
+          </dd>
+          <dt><span>Nombre Empresa</span></dt>
+          <dd>
+            <span>{{ clientesRef.nombreEmpresa }}</span>
+          </dd>
+          <dt><span>Nombres</span></dt>
+          <dd>
+            <span>{{ clientesRef.nombres }}</span>
+          </dd>
+          <dt><span>Notas</span></dt>
+          <dd>
+            <span>{{ clientesRef.notas }}</span>
+          </dd>
+          <dt><span>Sitio Web</span></dt>
+          <dd>
+            <span>{{ clientesRef.sitioWeb }}</span>
+          </dd>
+          <dt><span>Telefono Fijo</span></dt>
+          <dd>
+            <span>{{ clientesRef.telefonoFijo }}</span>
+          </dd>
+          <dt><span>Telefono Fijo 2</span></dt>
+          <dd>
+            <span>{{ clientesRef.telefonoFijo2 }}</span>
+          </dd>
+          <dt><span>Telefono Movil</span></dt>
+          <dd>
+            <span>{{ clientesRef.telefonoMovil }}</span>
+          </dd>
+          <dt><span>Telefono Movil 2</span></dt>
+          <dd>
+            <span>{{ clientesRef.telefonoMovil2 }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/clientes', clientesRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

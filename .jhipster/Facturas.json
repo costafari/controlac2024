@@ -1,0 +1,57 @@
+{
+  "annotations": {
+    "changelogDate": "20241018034538"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "numeroFactura",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fechaFactura",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "condicionPago",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "Facturas",
+  "relationships": [
+    {
+      "otherEntityName": "clientes",
+      "otherEntityRelationshipName": "facturas",
+      "relationshipName": "clientes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "lotes",
+      "otherEntityRelationshipName": "facturas",
+      "relationshipName": "lotes",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "detalles",
+      "otherEntityRelationshipName": "facturas",
+      "relationshipName": "detalles",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "abonos",
+      "otherEntityRelationshipName": "facturas",
+      "relationshipName": "abonos",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}
