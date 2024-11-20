@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-detalles-heading" data-cy="DetallesCreateUpdateHeading">Crear o editar Detalles</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">Id</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let cantidadRef = editForm.get('cantidad')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_cantidad">Cantidad</label>
+          <input type="number" class="form-control" name="cantidad" id="field_cantidad" data-cy="cantidad" formControlName="cantidad" />
+          @if (cantidadRef.invalid && (cantidadRef.dirty || cantidadRef.touched)) {
+            <div>
+              @if (editForm.get('cantidad')?.errors?.required) {
+                <small class="form-text text-danger">Este campo es obligatorio.</small>
+              }
+              <small class="form-text text-danger" [hidden]="!editForm.get('cantidad')?.errors?.number"
+                >Este campo debe ser un número.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_total">Total</label>
+          <input type="number" class="form-control" name="total" id="field_total" data-cy="total" formControlName="total" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

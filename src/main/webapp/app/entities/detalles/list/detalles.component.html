@@ -1,0 +1,94 @@
+<div>
+  <h2 id="page-heading" data-cy="DetallesHeading">
+    <span>Detalles</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-detalles"
+        [routerLink]="['/detalles/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Crear nuevo Detalles</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (detalles?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Ningún Detalles encontrado</span>
+    </div>
+  }
+
+  @if (detalles && detalles.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cantidad">
+              <div class="d-flex">
+                <span>Cantidad</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="total">
+              <div class="d-flex">
+                <span>Total</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (detalles of detalles; track trackId(detalles)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/detalles', detalles.id, 'view']">{{ detalles.id }}</a>
+              </td>
+              <td>{{ detalles.cantidad }}</td>
+              <td>{{ detalles.total }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/detalles', detalles.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/detalles', detalles.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(detalles)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

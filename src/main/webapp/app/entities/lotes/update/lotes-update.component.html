@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-lotes-heading" data-cy="LotesCreateUpdateHeading">Crear o editar Lotes</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">Id</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cantidad">Cantidad</label>
+          <input type="number" class="form-control" name="cantidad" id="field_cantidad" data-cy="cantidad" formControlName="cantidad" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fechaEntrada">Fecha Entrada</label>
+          <div class="input-group">
+            <input
+              id="field_fechaEntrada"
+              data-cy="fechaEntrada"
+              type="text"
+              class="form-control"
+              name="fechaEntrada"
+              ngbDatepicker
+              #fechaEntradaDp="ngbDatepicker"
+              formControlName="fechaEntrada"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaEntradaDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lote">Lote</label>
+          <input type="text" class="form-control" name="lote" id="field_lote" data-cy="lote" formControlName="lote" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_proveedores">Proveedores</label>
+          <select
+            class="form-control"
+            id="field_proveedores"
+            data-cy="proveedores"
+            name="proveedores"
+            formControlName="proveedores"
+            [compareWith]="compareProveedores"
+          >
+            <option [ngValue]="null"></option>
+            @for (proveedoresOption of proveedoresCollection; track $index) {
+              <option [ngValue]="proveedoresOption">{{ proveedoresOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

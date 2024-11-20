@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (abonos(); as abonosRef) {
+      <div>
+        <h2 data-cy="abonosDetailsHeading"><span>Abonos</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>Id</span></dt>
+          <dd>
+            <span>{{ abonosRef.id }}</span>
+          </dd>
+          <dt><span>Saldo Anterior</span></dt>
+          <dd>
+            <span>{{ abonosRef.saldoAnterior }}</span>
+          </dd>
+          <dt><span>Abono</span></dt>
+          <dd>
+            <span>{{ abonosRef.abono }}</span>
+          </dd>
+          <dt><span>Nuevo Saldo</span></dt>
+          <dd>
+            <span>{{ abonosRef.nuevoSaldo }}</span>
+          </dd>
+          <dt><span>Facturas</span></dt>
+          <dd>
+            @if (abonos()!.facturas) {
+              <div>
+                <a [routerLink]="['/facturas', abonos()!.facturas?.id, 'view']">{{ abonosRef.facturas?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/abonos', abonosRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

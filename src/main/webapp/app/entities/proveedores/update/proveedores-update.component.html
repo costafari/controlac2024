@@ -1,0 +1,121 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-proveedores-heading" data-cy="ProveedoresCreateUpdateHeading">Crear o editar Proveedores</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">Id</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_direccion">Direccion</label>
+          <input type="text" class="form-control" name="direccion" id="field_direccion" data-cy="direccion" formControlName="direccion" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nombreContacto">Nombre Contacto</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nombreContacto"
+            id="field_nombreContacto"
+            data-cy="nombreContacto"
+            formControlName="nombreContacto"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nombreEmpresa">Nombre Empresa</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nombreEmpresa"
+            id="field_nombreEmpresa"
+            data-cy="nombreEmpresa"
+            formControlName="nombreEmpresa"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_notas">Notas</label>
+          <input type="text" class="form-control" name="notas" id="field_notas" data-cy="notas" formControlName="notas" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_sitioWeb">Sitio Web</label>
+          <input type="text" class="form-control" name="sitioWeb" id="field_sitioWeb" data-cy="sitioWeb" formControlName="sitioWeb" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telefonoFijo">Telefono Fijo</label>
+          <input
+            type="number"
+            class="form-control"
+            name="telefonoFijo"
+            id="field_telefonoFijo"
+            data-cy="telefonoFijo"
+            formControlName="telefonoFijo"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telefonoFijo2">Telefono Fijo 2</label>
+          <input
+            type="number"
+            class="form-control"
+            name="telefonoFijo2"
+            id="field_telefonoFijo2"
+            data-cy="telefonoFijo2"
+            formControlName="telefonoFijo2"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telefonoMovil">Telefono Movil</label>
+          <input
+            type="number"
+            class="form-control"
+            name="telefonoMovil"
+            id="field_telefonoMovil"
+            data-cy="telefonoMovil"
+            formControlName="telefonoMovil"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telefonoMovil2">Telefono Movil 2</label>
+          <input
+            type="number"
+            class="form-control"
+            name="telefonoMovil2"
+            id="field_telefonoMovil2"
+            data-cy="telefonoMovil2"
+            formControlName="telefonoMovil2"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+{
+  "annotations": {
+    "changelogDate": "20241018034534"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "activo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "apellidos",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "direcion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nombreContacto",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nombreEmpresa",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nombres",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notas",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sitioWeb",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefonoFijo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "telefonoFijo2",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "telefonoMovil",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "telefonoMovil2",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Clientes",
+  "relationships": [
+    {
+      "otherEntityName": "facturas",
+      "otherEntityRelationshipName": "clientes",
+      "relationshipName": "facturas",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

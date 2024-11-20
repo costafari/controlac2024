@@ -1,0 +1,35 @@
+{
+  "annotations": {
+    "changelogDate": "20241018034536"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "descipcion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notas",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Productos",
+  "relationships": [
+    {
+      "otherEntityName": "lotes",
+      "otherEntityRelationshipName": "productos",
+      "relationshipName": "lotes",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

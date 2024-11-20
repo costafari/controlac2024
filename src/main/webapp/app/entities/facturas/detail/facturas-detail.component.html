@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (facturas(); as facturasRef) {
+      <div>
+        <h2 data-cy="facturasDetailsHeading"><span>Facturas</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>Id</span></dt>
+          <dd>
+            <span>{{ facturasRef.id }}</span>
+          </dd>
+          <dt><span>Numero Factura</span></dt>
+          <dd>
+            <span>{{ facturasRef.numeroFactura }}</span>
+          </dd>
+          <dt><span>Fecha Factura</span></dt>
+          <dd>
+            <span>{{ facturasRef.fechaFactura | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span>Condicion Pago</span></dt>
+          <dd>
+            <span>{{ facturasRef.condicionPago }}</span>
+          </dd>
+          <dt><span>Clientes</span></dt>
+          <dd>
+            @if (facturas()!.clientes) {
+              <div>
+                <a [routerLink]="['/clientes', facturas()!.clientes?.id, 'view']">{{ facturasRef.clientes?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span>Lotes</span></dt>
+          <dd>
+            @if (facturas()!.lotes) {
+              <div>
+                <a [routerLink]="['/lotes', facturas()!.lotes?.id, 'view']">{{ facturasRef.lotes?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span>Detalles</span></dt>
+          <dd>
+            @if (facturas()!.detalles) {
+              <div>
+                <a [routerLink]="['/detalles', facturas()!.detalles?.id, 'view']">{{ facturasRef.detalles?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/facturas', facturasRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

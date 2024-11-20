@@ -1,0 +1,182 @@
+<div>
+  <h2 id="page-heading" data-cy="ClientesHeading">
+    <span>Clientes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-clientes"
+        [routerLink]="['/clientes/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Crear nuevo Clientes</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (clientes?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Ningún Clientes encontrado</span>
+    </div>
+  }
+
+  @if (clientes && clientes.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="activo">
+              <div class="d-flex">
+                <span>Activo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="apellidos">
+              <div class="d-flex">
+                <span>Apellidos</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="direcion">
+              <div class="d-flex">
+                <span>Direcion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="email">
+              <div class="d-flex">
+                <span>Email</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombreContacto">
+              <div class="d-flex">
+                <span>Nombre Contacto</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombreEmpresa">
+              <div class="d-flex">
+                <span>Nombre Empresa</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombres">
+              <div class="d-flex">
+                <span>Nombres</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="notas">
+              <div class="d-flex">
+                <span>Notas</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="sitioWeb">
+              <div class="d-flex">
+                <span>Sitio Web</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telefonoFijo">
+              <div class="d-flex">
+                <span>Telefono Fijo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telefonoFijo2">
+              <div class="d-flex">
+                <span>Telefono Fijo 2</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telefonoMovil">
+              <div class="d-flex">
+                <span>Telefono Movil</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="telefonoMovil2">
+              <div class="d-flex">
+                <span>Telefono Movil 2</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (clientes of clientes; track trackId(clientes)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/clientes', clientes.id, 'view']">{{ clientes.id }}</a>
+              </td>
+              <td>{{ clientes.activo }}</td>
+              <td>{{ clientes.apellidos }}</td>
+              <td>{{ clientes.direcion }}</td>
+              <td>{{ clientes.email }}</td>
+              <td>{{ clientes.nombreContacto }}</td>
+              <td>{{ clientes.nombreEmpresa }}</td>
+              <td>{{ clientes.nombres }}</td>
+              <td>{{ clientes.notas }}</td>
+              <td>{{ clientes.sitioWeb }}</td>
+              <td>{{ clientes.telefonoFijo }}</td>
+              <td>{{ clientes.telefonoFijo2 }}</td>
+              <td>{{ clientes.telefonoMovil }}</td>
+              <td>{{ clientes.telefonoMovil2 }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/clientes', clientes.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/clientes', clientes.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(clientes)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

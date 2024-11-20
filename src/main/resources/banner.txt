@@ -8,5 +8,5 @@ ${AnsiColor.BRIGHT_BLUE}Y88b  d88P Y88..88P 888  888 Y88b.  888    Y88..88P 888 
 ${AnsiColor.BRIGHT_BLUE} "Y8888P"   "Y88P"  888  888  "Y888 888     "Y88P"  888 "Y888888  "Y8888P ${AnsiColor.WHITE}888888888   "Y8888P"  888888888        888  
                                                                                                                       
 
-${AnsiColor.GREEn}:: Miguel y Erick 🤓  :: Running Spring Boot ${spring-boot.version} :: Startup profile(s) ${spring.profiles.active} ::
+${AnsiColor.GREEN}:: Miguel y Erick 🤓  :: Running Spring Boot ${spring-boot.version} :: Startup profile(s) ${spring.profiles.active} ::
 :: https://www.jhipster.tech ::${AnsiColor.DEFAULT}

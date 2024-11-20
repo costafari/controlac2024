@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (lotes(); as lotesRef) {
+      <div>
+        <h2 data-cy="lotesDetailsHeading"><span>Lotes</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>Id</span></dt>
+          <dd>
+            <span>{{ lotesRef.id }}</span>
+          </dd>
+          <dt><span>Cantidad</span></dt>
+          <dd>
+            <span>{{ lotesRef.cantidad }}</span>
+          </dd>
+          <dt><span>Fecha Entrada</span></dt>
+          <dd>
+            <span>{{ lotesRef.fechaEntrada | formatMediumDate }}</span>
+          </dd>
+          <dt><span>Lote</span></dt>
+          <dd>
+            <span>{{ lotesRef.lote }}</span>
+          </dd>
+          <dt><span>Proveedores</span></dt>
+          <dd>
+            @if (lotes()!.proveedores) {
+              <div>
+                <a [routerLink]="['/proveedores', lotes()!.proveedores?.id, 'view']">{{ lotesRef.proveedores?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/lotes', lotesRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

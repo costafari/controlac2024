@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20241018034539"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "cantidad",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "total",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "Detalles",
+  "relationships": [
+    {
+      "otherEntityName": "facturas",
+      "otherEntityRelationshipName": "detalles",
+      "relationshipName": "facturas",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

@@ -1,0 +1,49 @@
+{
+  "annotations": {
+    "changelogDate": "20241018034535"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "cantidad",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "fechaEntrada",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "lote",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Lotes",
+  "relationships": [
+    {
+      "otherEntityName": "proveedores",
+      "otherEntityRelationshipName": "lotes",
+      "relationshipName": "proveedores",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "productos",
+      "otherEntityRelationshipName": "lotes",
+      "relationshipName": "productos",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "facturas",
+      "otherEntityRelationshipName": "lotes",
+      "relationshipName": "facturas",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

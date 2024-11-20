@@ -1,0 +1,141 @@
+<div>
+  <h2 id="page-heading" data-cy="FacturasHeading">
+    <span>Facturas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-facturas"
+        [routerLink]="['/facturas/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Crear nuevo Facturas</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (facturas?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>Ningún Facturas encontrado</span>
+    </div>
+  }
+
+  @if (facturas && facturas.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroFactura">
+              <div class="d-flex">
+                <span>Numero Factura</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaFactura">
+              <div class="d-flex">
+                <span>Fecha Factura</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="condicionPago">
+              <div class="d-flex">
+                <span>Condicion Pago</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="clientes.id">
+              <div class="d-flex">
+                <span>Clientes</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lotes.id">
+              <div class="d-flex">
+                <span>Lotes</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="detalles.id">
+              <div class="d-flex">
+                <span>Detalles</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (facturas of facturas; track trackId(facturas)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/facturas', facturas.id, 'view']">{{ facturas.id }}</a>
+              </td>
+              <td>{{ facturas.numeroFactura }}</td>
+              <td>{{ facturas.fechaFactura | formatMediumDatetime }}</td>
+              <td>{{ facturas.condicionPago }}</td>
+              <td>
+                @if (facturas.clientes) {
+                  <div>
+                    <a [routerLink]="['/clientes', facturas.clientes.id, 'view']">{{ facturas.clientes.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (facturas.lotes) {
+                  <div>
+                    <a [routerLink]="['/lotes', facturas.lotes.id, 'view']">{{ facturas.lotes.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (facturas.detalles) {
+                  <div>
+                    <a [routerLink]="['/detalles', facturas.detalles.id, 'view']">{{ facturas.detalles.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/facturas', facturas.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/facturas', facturas.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(facturas)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

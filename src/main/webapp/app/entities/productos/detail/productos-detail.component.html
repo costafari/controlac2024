@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (productos(); as productosRef) {
+      <div>
+        <h2 data-cy="productosDetailsHeading"><span>Productos</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>Id</span></dt>
+          <dd>
+            <span>{{ productosRef.id }}</span>
+          </dd>
+          <dt><span>Descipcion</span></dt>
+          <dd>
+            <span>{{ productosRef.descipcion }}</span>
+          </dd>
+          <dt><span>Nombre</span></dt>
+          <dd>
+            <span>{{ productosRef.nombre }}</span>
+          </dd>
+          <dt><span>Notas</span></dt>
+          <dd>
+            <span>{{ productosRef.notas }}</span>
+          </dd>
+          <dt><span>Lotes</span></dt>
+          <dd>
+            @if (productos()!.lotes) {
+              <div>
+                <a [routerLink]="['/lotes', productos()!.lotes?.id, 'view']">{{ productosRef.lotes?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/productos', productosRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
